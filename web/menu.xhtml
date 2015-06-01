@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+
+
+
+    <h:body>
+        <img src="images/logo.png" class="ui-imagee"/>
+        <p:tabMenu activeIndex="#{param.i}" class="ui-menuuuu">
+            <p:menuitem value="Alquiler" outcome="/alquiler/List" icon="ui-icon-star" />
+            <p:menuitem value="Ciudades" outcome="/ciudad/List" icon="ui-icon-search"/>
+            <p:menuitem value="Clientes" outcome="/cliente/List" icon="ui-icon-document"/>
+            <p:menuitem value="Linea" outcome="/linea/List" icon="ui-icon-wrench"/>
+            <p:menuitem value="Marca" outcome="/marca/List" icon="ui-icon-person"/>
+            <p:menuitem value="Pais" outcome="/pais/List" icon="ui-icon-search"/>
+            <p:menuitem value="Usuario" outcome="/usuario/List" icon="ui-icon-person"/>
+            <p:menuitem value="Vehiculo" outcome="/vehiculo/List" icon="ui-icon-wrench"/>
+            <p:menuitem value="Cerrar Sesion" outcome="/index" icon="ui-icon-person"/>
+        </p:tabMenu>
+        <img src="images/tit_bienvenidos.png" class="ui-imageee"/>
+        <h:button outcome="welcomePrimefaces" value="Primefaces welcome page"  rendered="false"/>
+
+
+
+        <div class="ui-acord">    
+            <h:form id="form">           
+                <p:growl id="msgs" showDetail="true" />
+
+
+                <p:accordionPanel>
+                    <p:tab title="MISION">
+                        <h:panelGrid columns="2" cellpadding="10">
+
+                            <h:outputText
+                                value="Ofrecer y proporcionar a nuestros clientes productos de excelente calidad y un magnifico servicio en el alquiler de vehiculos, que facilite el transporte de las personas, contribuyendo de esta forma al crecimiento económico del país y al bienestar de nuestra sociedad y de nuestros empleados generando rentabilidad para la compañía." />
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="VISION">
+                        <h:panelGrid columns="2" cellpadding="10">
+
+                            <h:outputText value="Consolidarnos como una empresa modelo en el alquiler de vehiculos, y de esta forma ser la primera opción en la mente de nuestros clientes, ofreciendo calidad, precios competitivos y excelente servicio." />
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="HISTORIA">
+                        <h:panelGrid columns="2" cellpadding="10">
+
+                            <h:outputText value="Nuestra compañía nace en 1988, con la idea de dar un acompañamiento a las personas mediante el alquiler de vehiculos. AllVe está orientada a servir a sus clientes con productos de excelente calidad y oportunas.
+
+                                          El nivel de crecimiento durante estos años ha sido en forma constante y dinámica. Hoy en día contamos con la infraestructura adecuada para sostener muchas opciones de vehiculos; utilizando personal altamente calificado para su reparación y mantenimiento, que proporciona seguridad en el uso.
+
+                                          Una de nuestras fortalezas es la renovación continua de los activos de la empresa y el mantenimiento de los equipos, lo cual nos permite evolucionar en la medida en que lo hace el mercado con procesos de innovación que dan cumplimiento a las normas técnicas y de seguridad." />
+                        </h:panelGrid>
+                    </p:tab>
+                </p:accordionPanel>
+            </h:form>
+        </div>
+        <div style="float: right; margin-right: 300px;">
+        <p:notificationBar position="bottom" effect="slide" styleClass="bottom" widgetVar="bar">
+            <h:outputText value="Todos los derechos reservados  " style="font-size:33px;" />
+            <br/>
+            <h:outputText value="/ Henry Jaramillo" style="font-size:33px;" />
+            <br/>
+            <h:outputText value="/ Jairo Bastidas" style="font-size:33px;" />
+        </p:notificationBar>
+
+        <p:commandButton value="Mostrar Creadores" onclick="PF('bar').show()" type="button" />
+        <p:commandButton value="Esconder Creadores" onclick="PF('bar').hide()" type="button" />
+        </div>
+    </h:body>
+
+</html>
+

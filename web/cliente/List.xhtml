@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      template="./menus.xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:outputStylesheet name="css/jsfcrud.css"/>
+
+    <ui:define name="top">
+        <img src="../images/logo2.png" style="width: 400px; height: 140px; margin-left: 30px;"/>
+        <p:tabMenu activeIndex="#{param.i}" class="ui-menuuuu">
+            <p:menuitem value="Alquiler" outcome="/alquiler/List" icon="ui-icon-star"/>
+            <p:menuitem value="Ciudades" outcome="/ciudad/List" icon="ui-icon-search"/>
+            <p:menuitem value="Clientes" outcome="/cliente/List" icon="ui-icon-document"/>
+            <p:menuitem value="Linea" outcome="/linea/List" icon="ui-icon-wrench"/>
+            <p:menuitem value="Marca" outcome="/marca/List" icon="ui-icon-person"/>
+            <p:menuitem value="Pais" outcome="/pais/List" icon="ui-icon-search"/>
+            <p:menuitem value="Usuario" outcome="/usuario/List" icon="ui-icon-person"/>
+            <p:menuitem value="Vehiculo" outcome="/vehiculo/List" icon="ui-icon-wrench"/>
+            <p:menuitem value="Cerrar Sesion" outcome="/index" icon="ui-icon-person"/>
+        </p:tabMenu>
+    </ui:define>
+
+    <ui:define name="left" >
+        <div style="margin-left: 3px;">
+        <p:notificationBar position="bottom" effect="slide" styleClass="bottom" widgetVar="bar">
+            <h:outputText value="Todos los derechos reservados  " style="font-size:33px;" />
+            <br/>
+            <h:outputText value="/ Henry Jaramillo" style="font-size:29px;" />
+            <br/>
+            <h:outputText value="/ Jairo Bastidas" style="font-size:29px;" />
+        </p:notificationBar>
+            <div style="margin-left: 5px;">
+        <p:commandButton value="Mostrar Creadores" onclick="PF('bar').show()" type="button" /><br/>
+        </div>
+        <p:commandButton value="Esconder Creadores" onclick="PF('bar').hide()" type="button" />
+        </div>
+    </ui:define>
+
+
+
+
+
+    <ui:define name="content">
+        <h:form id="ClienteListForm">
+                
+                    <p:dataTable id="datalist" value="#{clienteController.items}" var="item"
+                                 selectionMode="single" selection="#{clienteController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.identificacion}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_identificacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.identificacion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_nombres}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombres}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_apellidos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.apellidos}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_email}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_telefono}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telefono}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClienteTitle_ciudad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ciudad}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{clienteController.prepareCreate}" update=":ClienteCreateForm" oncomplete="PF('ClienteCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ClienteViewForm" oncomplete="PF('ClienteViewDialog').show()" disabled="#{empty clienteController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ClienteEditForm" oncomplete="PF('ClienteEditDialog').show()" disabled="#{empty clienteController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{clienteController.destroy}" update=":growl,datalist" disabled="#{empty clienteController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+    </ui:define>
+</ui:composition>

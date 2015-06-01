@@ -1,0 +1,64 @@
+.ui-widget {
+    
+    font-size: 12px !important;
+}
+.ui-layout-north {
+    
+    z-index: 20 !important;
+    overflow: visible !important;;
+}
+.ui-layout-north .ui-layout-unit-content {
+    
+    overflow: visible !important;
+}
+.ui-widget-header {
+    
+    text-align: center;
+    text-transform: uppercase;
+}
+.ui-button {
+    
+    margin-top: 10px !important;
+}
+.ui-buttom{
+    position: relative;
+  top: 100px;
+  left: 550px;
+}
+.ui-menuuuu{
+    margin-top: 100px;
+  float: right;
+}
+.ui-image{
+    margin-left: 530px;
+    margin-top: 100px;
+    
+  width: 300px;
+  height: 200px;
+}
+.ui-imagee{
+  float: left;
+  vertical-align: bottom;
+  width: 300px;
+  height: 200px;
+  margin-left: 100px;
+  margin-top: 10px;
+}
+.ui-imageee{
+    margin-top: -130px;
+  float: right;
+  margin-right: 200px;
+  width: 400px;
+  height: 80px;
+  position: relative;
+}
+.ui-acord{
+    float: right;
+    vertical-align: bottom;
+    width: 830px;
+}
+.ui-imageemenu{
+    width: 200px;
+  height: 150px;
+  margin-left: 150px;
+}

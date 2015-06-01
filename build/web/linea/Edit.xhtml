@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LineaEditDlg" widgetVar="LineaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditLineaTitle}">
+            <h:form id="LineaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{lineaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditLineaLabel_nombreLinea}" for="nombreLinea" />
+                        <p:inputText id="nombreLinea" value="#{lineaController.selected.nombreLinea}" title="#{bundle.EditLineaTitle_nombreLinea}" required="true" requiredMessage="#{bundle.EditLineaRequiredMessage_nombreLinea}"/>
+                        <p:outputLabel value="#{bundle.EditLineaLabel_nombreMarca}" for="nombreMarca" />
+                        <p:selectOneMenu id="nombreMarca" value="#{lineaController.selected.nombreMarca}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{marcaController.itemsAvailableSelectOne}"
+                                           var="nombreMarcaItem"
+                                           itemValue="#{nombreMarcaItem}" itemLabel="#{nombreMarcaItem.nombreMarca}" />
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{lineaController.update}" value="#{bundle.Save}" update="display,:LineaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LineaEditDialog');" onclick="LineaEditDialog.hide()" />
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LineaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
